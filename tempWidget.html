@@ -85,27 +85,27 @@
             width: 100%;
         }
 
-        .segment-38 {
+        .segment-40 {
             background-color: rgb(255, 35, 35); /* Red for 30°C and above */
         }
 
         .segment-30 {
-            background-color: rgb(255, 85, 85); /* Red for 30°C */
-        }
-
-        .segment-20 {
             background-color: orange; /* Orange for 20°C to 30°C */
         }
 
-        .segment-10 {
+        .segment-20 {
             background-color: rgb(228, 228, 0); /* Yellow for 10°C to 20°C */
+        }
+
+        .segment-10 {
+            background-color: rgb(0, 162, 157); /* Cyan for 5°C to 10°C */
         }
 
         .segment-5 {
             background-color: rgb(0, 162, 157); /* Cyan for 5°C to 10°C */
         }
 
-        .segment-minus-0 {
+        .segment-0 {
             background-color: rgb(0, 106, 255); /* Blue for 0°C to 5°C */
         }
 
@@ -122,7 +122,7 @@
         /* Labels next to each segment */
         .bar-labels {
             position: absolute;
-            left: 100%;
+            left: 70%;
             transform: translateX(10px); /* Add some space between the bar and labels */
             display: flex;
             flex-direction: column;
@@ -136,11 +136,12 @@
             color: black;
         }
 
-        .label-30 { top: 5px; }
-        .label-20 { top: 55px; }
-        .label-10 { top: 105px; }
-        .label-0 { top: 155px; }
-        .label-minus-10 { top: 205px; }
+        .label-40 { top: 5px; }
+        .label-30 { top: 55px; }
+        .label-20 { top: 105px; }
+        .label-10 { top: 155px; }
+        .label-5  {top:205px }
+        .label-0 { top: 255px; }
 
         /* Media query for smaller screens */
         @media (max-width: 768px) {
@@ -187,11 +188,12 @@
     </div>
 
     <div class="bar-labels">
+        <div class="bar-label label-40">40</div>
         <div class="bar-label label-30">30</div>
         <div class="bar-label label-20">20</div>
         <div class="bar-label label-10">10</div>
-        <div class="bar-label label-0">0</div>
-        <div class="bar-label label-minus-10">-10</div>
+        <div class="bar-label label-5">5</div>
+        <div class="bar-label label-0">-0</div>
     </div>
 </div>
 

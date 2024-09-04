@@ -22,8 +22,8 @@
         .widget {
             background-color: #ffffff;
             border-radius: 15px;
-            padding: 20px;
-            width: 250px;
+            padding: 15px; /* Giảm padding để widget nhỏ hơn */
+            width: 200px; /* Giảm kích thước */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             color: #333;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -35,7 +35,7 @@
         }
 
         .widget h2 {
-            font-size: 18px;
+            font-size: 16px; /* Giảm kích thước chữ */
             color: #007bff;
             display: flex;
             align-items: center;
@@ -47,7 +47,7 @@
         }
 
         .temperature {
-            font-size: 48px;
+            font-size: 36px; /* Giảm kích thước nhiệt độ */
             font-weight: bold;
             margin: 10px 0;
             color: #333;
@@ -55,15 +55,15 @@
         }
 
         .temp-change {
-            font-size: 14px;
+            font-size: 12px; /* Giảm kích thước chữ */
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Giảm khoảng cách dưới */
         }
 
         .bar-container {
             position: relative;
-            height: 150px;
-            width: 30px;
+            height: 120px; /* Giảm chiều cao */
+            width: 20px; /* Giảm chiều rộng */
             background: linear-gradient(to top, blue, green, yellow, orange, red);
             border-radius: 5px;
             margin: 0 auto;
@@ -72,10 +72,10 @@
         .bar-indicator {
             position: absolute;
             left: -10px;
-            width: 50px;
+            width: 40px; /* Giảm chiều rộng thanh chỉ báo */
             height: 2px;
             background-color: white;
-            transition: top 0.3s ease; /* Smooth transition */
+            transition: top 0.3s ease;
         }
 
         .bar-indicator span {
@@ -84,8 +84,29 @@
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            font-size: 14px;
-            transition: color 0.3s ease; /* Smooth transition */
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+
+        /* Media query cho màn hình nhỏ hơn */
+        @media (max-width: 768px) {
+            .widget {
+                transform: scale(0.9); /* Giảm kích thước widget cho màn hình nhỏ */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .widget {
+                transform: scale(0.8); /* Giảm kích thước widget cho màn hình rất nhỏ */
+            }
+
+            .temperature {
+                font-size: 28px; /* Giảm kích thước chữ nhiệt độ */
+            }
+
+            .widget h2 {
+                font-size: 14px; /* Giảm kích thước tiêu đề */
+            }
         }
     </style>
 </head>

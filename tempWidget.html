@@ -77,6 +77,28 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Neon effects */
+        .neon-red {
+            box-shadow: 0 0 20px rgba(255, 87, 87, 0.7);
+        }
+
+        .neon-orange {
+            box-shadow: 0 0 20px rgba(255, 182, 47, 0.7);
+        }
+
+        .neon-blue {
+            box-shadow: 0 0 20px rgba(28, 225, 255, 0.7);
+        }
+
+        .neon-green {
+            box-shadow: 0 0 20px rgba(4, 98, 7, 0.7);
+        }
+
+        .neon-purple {
+            box-shadow: 0 0 20px rgba(249, 64, 215, 0.7);
         }
 
         /* Each temperature range segment */
@@ -86,15 +108,15 @@
         }
 
         .segment-40 {
-            background-color: rgb(255, 35, 35); /* Red for 30°C and above */
+            background-color: rgb(255, 87, 87); /* Red for 30°C and above */
         }
 
         .segment-30 {
-            background-color: orange; /* Orange for 20°C to 30°C */
+            background-color: rgb(255, 182, 47); /* Orange for 20°C to 30°C */
         }
 
         .segment-20 {
-            background-color: rgb(228, 228, 0); /* Yellow for 10°C to 20°C */
+            background-color: rgb(28, 225, 255); /* Yellow for 10°C to 20°C */
         }
 
         .segment-10 {
@@ -102,11 +124,11 @@
         }
 
         .segment-5 {
-            background-color: rgb(148, 0, 121); /* Cyan for 5°C to 10°C */
+            background-color: rgb(249, 64, 215); /* Cyan for 5°C to 10°C */
         }
 
         .segment-0 {
-            background-color: rgb(0, 106, 255); /* Blue for 0°C to 5°C */
+            background-color: rgb(55, 138, 255); /* Blue for 0°C to 5°C */
         }
 
         /* Black bar indicator */
@@ -118,30 +140,6 @@
             background-color: black;
             transition: top 0.5s ease;
         }
-
-        /* Labels next to each segment */
-        .bar-labels {
-            position: absolute;
-            left: 70%;
-            transform: translateX(10px); /* Add some space between the bar and labels */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            padding: 5px 0;
-        }
-
-        .bar-label {
-            font-size: 16px;
-            color: black;
-        }
-
-        .label-40 { top: 5px; }
-        .label-30 { top: 55px; }
-        .label-20 { top: 105px; }
-        .label-10 { top: 140px; }
-        .label-5  {top:185px }
-        .label-0 { top: 235px; }
 
         /* Media query for smaller screens */
         @media (max-width: 768px) {
@@ -175,7 +173,7 @@
     </div>
 
     <!-- Temperature bar container with segments and separators -->
-    <div class="bar-container">
+    <div class="bar-container" id="bar-container">
         <div class="bar-segment segment-40"></div>
         <div class="bar-segment segment-30"></div>
         <div class="bar-segment segment-20"></div>
@@ -185,15 +183,6 @@
 
         <!-- Black bar indicator that moves based on temperature -->
         <div class="bar-indicator" id="bar-indicator"></div>
-    </div>
-
-    <div class="bar-labels">
-        <div class="bar-label label-40">40</div>
-        <div class="bar-label label-30">30</div>
-        <div class="bar-label label-20">20</div>
-        <div class="bar-label label-10">10</div>
-        <div class="bar-label label-5">5</div>
-        <div class="bar-label label-0">0</div>
     </div>
 </div>
 
@@ -205,14 +194,31 @@
     function updateTemperature() {
         const temperatureElement = document.getElementById('temperature');
         const barIndicator = document.getElementById('bar-indicator');
+        const barContainer = document.getElementById('bar-container');
 
-        // Random temperature between -10 and 30
+        // Random temperature between 0 and 40
         const randomTemp = getRandomTemperature(0, 40);
         temperatureElement.innerHTML = randomTemp;
 
         // Calculate the position of the bar based on the temperature
-        const tempPercent = ((randomTemp - (0)) / (40 - (0))) * 100;
+        const tempPercent = ((randomTemp - 0) / (40 - 0)) * 100;
         barIndicator.style.top = (100 - tempPercent) + '%'; // Move the black bar according to the temperature
+
+        // Remove previous neon classes
+        barContainer.classList.remove('neon-red', 'neon-orange', 'neon-blue', 'neon-green', 'neon-purple');
+
+        // Add neon effect based on temperature range
+        if (randomTemp >= 30) {
+            barContainer.classList.add('neon-red');
+        } else if (randomTemp >= 20) {
+            barContainer.classList.add('neon-orange');
+        } else if (randomTemp >= 10) {
+            barContainer.classList.add('neon-blue');
+        } else if (randomTemp >= 5) {
+            barContainer.classList.add('neon-green');
+        } else {
+            barContainer.classList.add('neon-purple');
+        }
     }
 
     // Update temperature every 3 seconds

@@ -21,10 +21,13 @@
         }
 
         .widget {
-            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: row;
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 15px;
-            width: 220px;
+            width: 500px;
+            height: 180px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             color: #333;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -35,8 +38,15 @@
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
+        .temperature-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .widget h2 {
-            font-size: 18px;
+            font-size: 24px;
             color: #007bff;
             display: flex;
             align-items: center;
@@ -48,32 +58,32 @@
         }
 
         .temperature {
-            font-size: 36px;
+            font-size: 60px;
             font-weight: bold;
             margin: 10px 0;
         }
 
         .temp-change {
-            font-size: 12px;
+            font-size: 16px;
             color: #555;
-            margin-bottom: 15px;
         }
 
         /* Temperature bar container */
         .bar-container {
             position: relative;
-            height: 300px;
-            width: 60px;
+            height: 100%;
+            width: 100px;
             margin: 0 auto;
             border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* Each temperature range segment */
         .bar-segment {
-            position: relative;
-            height: calc(100% / 6); /* Six segments for 5-38°C */
-            width: 40px;
-            margin: 0 auto;
+            height: calc(100% / 6); /* Six segments for -10 to 38°C */
+            width: 100%;
         }
 
         .segment-38 {
@@ -111,27 +121,18 @@
         }
 
         /* Labels next to each segment */
+        .bar-labels {
+            position: absolute;
+            left: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
         .bar-label {
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 14px;
+            font-size: 16px;
             color: black;
-        }
-
-        /* White separators between segments */
-        .separator {
-            position: relative;
-            height: 2px;
-            width: 40px;
-            background-color: white;
-            margin: 0 auto;
-        }
-
-        .bar-segment .separator {
-            position: absolute;
-            bottom: 0;
         }
 
         /* Media query for smaller screens */
@@ -147,11 +148,11 @@
             }
 
             .temperature {
-                font-size: 28px;
+                font-size: 50px;
             }
 
             .widget h2 {
-                font-size: 14px;
+                font-size: 18px;
             }
         }
     </style>
@@ -159,44 +160,31 @@
 <body>
 
 <div class="widget">
-    <h2>Temperature:  °C</h2>
-    <div class="temperature" id="temperature">20.0</div>
-    <div class="temp-change" id="temp-change">Dự báo thay đổi sau 2 giờ</div>
+    <div class="temperature-section">
+        <h2>Temperature:  °C</h2>
+        <div class="temperature" id="temperature">20.0</div>
+        <div class="temp-change" id="temp-change">Forecast change in 2 hours</div>
+    </div>
 
     <!-- Temperature bar container with segments and separators -->
     <div class="bar-container">
-        <div class="bar-segment segment-38">
-            <div class="bar-label">38</div>
-        </div>
-        <div class="separator"></div>
-
-        <div class="bar-segment segment-30">
-            <div class="bar-label">30</div>
-        </div>
-        <div class="separator"></div>
-
-        <div class="bar-segment segment-20">
-            <div class="bar-label">20</div>
-        </div>
-        <div class="separator"></div>
-
-        <div class="bar-segment segment-10">
-            <div class="bar-label">10</div>
-        </div>
-        <div class="separator"></div>
-
-        <div class="bar-segment segment-5">
-            <div class="bar-label">5</div>
-        </div>
-        <div class="separator"></div>
-
-        <div class="bar-segment segment-minus-0">
-            <div class="bar-label">0</div>
-        </div>
+        <div class="bar-segment segment-38"></div>
+        <div class="bar-segment segment-30"></div>
+        <div class="bar-segment segment-20"></div>
+        <div class="bar-segment segment-10"></div>
+        <div class="bar-segment segment-5"></div>
+        <div class="bar-segment segment-minus-0"></div>
 
         <!-- Black bar indicator that moves based on temperature -->
         <div class="bar-indicator" id="bar-indicator"></div>
-        <!-- Trong thanh bar container sẽ chứa một thanh ngang chạy theo giá trị random -->
+    </div>
+
+    <div class="bar-labels">
+        <div class="bar-label">30</div>
+        <div class="bar-label">20</div>
+        <div class="bar-label">10</div>
+        <div class="bar-label">0</div>
+        <div class="bar-label">-10</div>
     </div>
 </div>
 
@@ -209,12 +197,12 @@
         const temperatureElement = document.getElementById('temperature');
         const barIndicator = document.getElementById('bar-indicator');
 
-        // Random temperature between 0 and 38
-        const randomTemp = getRandomTemperature(0, 38);
+        // Random temperature between -10 and 30
+        const randomTemp = getRandomTemperature(-10, 30);
         temperatureElement.innerHTML = randomTemp;
 
         // Calculate the position of the bar based on the temperature
-        const tempPercent = ((randomTemp - 0) / (38 - 0)) * 100;
+        const tempPercent = ((randomTemp - (-10)) / (30 - (-10))) * 100;
         barIndicator.style.top = (100 - tempPercent) + '%'; // Move the black bar according to the temperature
     }
 

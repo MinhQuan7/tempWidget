@@ -98,11 +98,11 @@
         }
 
         .segment-10 {
-            background-color: rgb(10, 243, 18); /* Cyan for 5°C to 10°C */
+            background-color: rgb(4, 98, 7); /* Cyan for 5°C to 10°C */
         }
 
         .segment-5 {
-            background-color: rgb(0, 162, 157); /* Cyan for 5°C to 10°C */
+            background-color: rgb(148, 0, 121); /* Cyan for 5°C to 10°C */
         }
 
         .segment-0 {
@@ -176,7 +176,7 @@
 
     <!-- Temperature bar container with segments and separators -->
     <div class="bar-container">
-        <div class="bar-segment segment-38"></div>
+        <div class="bar-segment segment-40"></div>
         <div class="bar-segment segment-30"></div>
         <div class="bar-segment segment-20"></div>
         <div class="bar-segment segment-10"></div>
@@ -207,11 +207,11 @@
         const barIndicator = document.getElementById('bar-indicator');
 
         // Random temperature between -10 and 30
-        const randomTemp = getRandomTemperature(-10, 30);
+        const randomTemp = getRandomTemperature(0, 40);
         temperatureElement.innerHTML = randomTemp;
 
         // Calculate the position of the bar based on the temperature
-        const tempPercent = ((randomTemp - (-10)) / (30 - (-10))) * 100;
+        const tempPercent = ((randomTemp - (0)) / (40 - (0))) * 100;
         barIndicator.style.top = (100 - tempPercent) + '%'; // Move the black bar according to the temperature
     }
 

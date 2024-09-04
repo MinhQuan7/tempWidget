@@ -107,7 +107,7 @@
         temperatureElement.innerHTML = randomTemp;
 
         // Calculate the position of the bar based on the temperature
-        const tempPercent = ((randomTemp - (-10)) / (30 - (-10))) * 100;
+        const tempPercent = ((randomTemp - (10)) / (40 - (-10))) * 100;
         barIndicator.style.top = (100 - tempPercent) + '%'; // Reverse percentage for correct bar position
         tempLabelElement.innerHTML = randomTemp;
     }

@@ -79,7 +79,6 @@
             height: 100%;
             width: 120px;  /* Tăng chiều rộng để chứa cả label và bar */
             margin: 0 auto;
-            border: 1px solid #ccc;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -223,7 +222,7 @@
     function updateTemperature() {
         const temperatureElement = document.getElementById('temperature');
         const barIndicator = document.getElementById('bar-indicator');
-        const barContainer = document.getElementById('bar-container');
+        const barContainer = document.getElementById('bar-container-with-labels');
 
         // Random temperature between 0 and 40
         const randomTemp = getRandomTemperature(0, 40);

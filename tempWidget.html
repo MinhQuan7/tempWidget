@@ -24,7 +24,7 @@
             display: flex;
             flex-direction: row;
             background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 15px;
             width: 500px;
             height: 180px;
@@ -82,6 +82,21 @@
             border-radius: 15px; /* Bo tròn 4 góc */
         }
 
+        /* Bo 2 góc trên cho segment 40 */
+        .segment-40 {
+            /* background-color: rgba(255, 69, 0, 0.7); */
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Bo 2 góc dưới cho segment 0 */
+        .segment-0 {
+            /* background-color: rgba(0, 191, 255, 0.7); */
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+
         /* Neon effects */
         .neon-red {
             box-shadow: 0 0 20px rgba(255, 87, 87, 0.7);
@@ -137,6 +152,7 @@
             background-color: black;
             transition: top 0.5s ease;
         }
+
         /* .bar-label {
             font-size: 16px;
             color: rgb(5, 5, 5);

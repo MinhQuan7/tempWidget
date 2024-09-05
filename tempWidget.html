@@ -52,8 +52,12 @@
         }
 
         .widget h2:before {
-            content: '🌡️';
             margin-right: 8px;
+        }
+        
+        .icon-temp {
+            width: 30px;
+            height: auto;
         }
 
         .temperature {
@@ -185,7 +189,11 @@
 
 <div class="widget">
     <div class="temperature-section">
-        <h2>Temperature</h2>
+        <h2>
+            <img src="temperature.png" alt="icon" id="icon-temp">
+            Temperature
+
+        </h2>
         <div class="temperature" id="temperature">20.0 °C</div>
         <div class="temp-change" id="temp-change">Forecast change in 2 hours</div>
     </div>
